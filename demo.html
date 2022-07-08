@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>靓仔❤憨憨的故事</title>
+    <link rel="icon" href="./includes/love_letter.ico" type="images/x-ico" />
+    <link type="text/css" rel="stylesheet" href="./includes/default.css">
+    <script type="text/javascript" src="./includes/jquery.min.js"></script>
+    <script type="text/javascript" src="./includes/jscex.min.js"></script>
+    <script type="text/javascript" src="./includes/jscex-parser.js"></script>
+    <script type="text/javascript" src="./includes/jscex-jit.js"></script>
+    <script type="text/javascript" src="./includes/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./includes/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./includes/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./includes/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./includes/love.js" charset="utf-8"></script>
+    <style type="text/css">
+.LoveStyle {color: #ff0000}
+    </style>
+</head>
+    <body>
+            <audio autoplay="autoplay">
+                    <source src="https://tanyaodan.com/wp-content/uploads/2019/09/Paper_Rings.mp3" type="audio/mp3"/>
+            </audio>
+        <div id="main">
+            <div id="wrap">
+                <div id="text">
+                    <div id="code">
+                        <span class="say">靓仔和憨憨的故事可以用几句歌词来描述...</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">时间它帮我设计 下一秒谁是神秘嘉宾</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">紧张兮兮对你说一句 欢迎光临</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">我不愿让你一个人 一个人在人海浮沉</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">我不愿你独自走过 风雨的时分</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">我不愿让你一个人承受这世界的残忍</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">就算世界与我为敌 我超喜欢你</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">超喜欢你不能分离 我只相信这个真理</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">这一句我爱你说出口 我会用这一生为你守候</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say">Oh me I fall in love with you every single day...</span><br>
+                        <span class="say"> </span><br>
+                        <span class="say"><a href="https://tanyaodan.com/love/靓仔和憨憨的故事">点击查看我们的故事</a><span class="space"></span> ——— <a href="https://tanyaodan.com">Don</a></span>
+                    </div>
+                </div>
+                <div id="clock-box">
+                    谭尧丹<span class="LoveStyle"> ❤ </span>汪晓慧<span class="LoveStyle"> 已经相恋了</span>
+                  <div id="clock"></div>
+              </div>
+                <canvas id="canvas" width="1100" height="680"></canvas>
+            </div>
+            
+        </div>
+    
+    <script>
+    </script>
+
+    <script>
+    (function(){
+        var canvas = $('#canvas');
+        
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+        
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]] 
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e){
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            // 会有闪烁不得意这样做, (＞﹏＜)
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var begin = "2019/11/17 21:06:52";
+            var together = new Date(begin);
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+    </script>
+</body>
+</html>
