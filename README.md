@@ -23,7 +23,8 @@
 ##### 在某处另一个我们 在那里另一个我微笑着
 
 ##### 另一个我们还深爱着 代替我们永恒着 如果能这么想就够了
-
+他说，彼方尚有荣光在。<br>
+![](/img/light.png)
 程序员式浪漫~ <a href="https://tanyaodan.com/love/demo.html" target="_blank">点击查看演示页面</a>这是2019年时进行二次开发后的记录恋爱时长和恋爱故事的网页~<br>
 在网站根目录新建`love`文件夹后把项目解压缩放入，通过 `域名/love/` 就可以进行访问。<br><br>
 给页面文字添加`span`标签，设置`id="text-xx"`唯一属性，使用`contenteditable="true"`，开启该元素的编辑模式，用`jQuery属性.click()`判断点击，用`.text()`返回此元素的文本内容，并用正则进行判断内容是否合法，然后通过`AJAX POST`给`php`处理，`php`对传入的参数进行过滤，然后读取模版文件，替换模版文件对应内容，保存为新文件并记录操作，最后返回数据给前端，前端处理数据并更新页面。需要给`/love/forever/others`和`/love/forever/loveNote.txt`设置`777`权限嗷~<br>
